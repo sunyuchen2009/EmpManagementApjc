@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新規メンバー</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<h1 align="center">新規メンバー画面</h1>
+<form align="center" method="post" th:action="@{/addMember}">
+    名前<input type="text" name="name">
+    性別<select type="text" name="gender"></option><option value="man">男性</option>
+    <option value="woman">女性</option></select>
+    住所<input type="text" name="adress"><br>
+    年齢<input type="text" name="age">
+    携帯番号<input type="tel" name="tel">
+    <br>
+    <br>
+    <br>
+    <br>
+    <input class="btn-primary" type="submit" value="新規追加"/>
+    <a class="btn-primary" href="/menu">メニュー画面に戻る</a>
+</form>
+
+</body>
+</html>

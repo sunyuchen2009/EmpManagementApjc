@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>メンバー管理</title>
+    <h1 align="center">メンバー管理</h1>
+</head>
+<body>
+<div1 class="div-parent">
+    <form method="post" th:action="@{/searchMember}">
+        <tr>
+            名前:<input type="text" name="name"><td></td><td></td>
+            年齢:<input type="text" name="age">
+            <button onclick="showSelectedMember()">検索</button></tr><br>
+        </tr>
+        <tr>
+            <td>性別:<select name="gender"><option value="man">男性</option>
+            <option value="woman">女性</option></select>
+            </td>
+        </tr>
+
+    </form>
+</div1>
+
+<div2 class="div-parent">
+    <table border="1" cellspacing="0" style="width: 500px;height: 100px" >
+
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>性別</th>
+            <th>携帯番号</th>
+            <th>住所</th>
+            <th>操作</th>
+        </tr>
+
+        <!--全部列表-->
+        <tr id="query_all" th:each="member, memberStat:${memberList}">
+            <td th:text="${member.getId()}"></td>
+            <td th:text="${member.getName()}"></td>
+            <td th:text="${member.getAge()}"></td>
+            <td th:text="${member.getGender()}"></td>
+            <td th:text="${member.getTel()}"></td>
+            <td th:text="${member.getAdress()}"></td>
+
+            <td><button th:onclick="changeMember([[${member.id}]], [[${member.name}]],[[${member.age}]], [[${member.gender}]], [[${member.tel}]], [[${member.adress}]])">変更</button></td>
+        </tr>
+        <!--默认隐藏搜索数据-->
+        <tr id="query_select" th:each="selectedMember, selectedMemberStat:${selectedMemberList}">
+            <td th:text="${selectedMember.getId()}"></td>
+            <td th:text="${selectedMember.getName()}"></td>
+            <td th:text="${selectedMember.getAge()}"></td>
+            <td th:text="${selectedMember.getGender()}"></td>
+            <td th:text="${selectedMember.getTel()}"></td>
+            <td th:text="${selectedMember.getAdress()}"></td>
+
+            <td><button th:onclick="changeMember([[${member.id}]], [[${member.name}]],[[${member.age}]], [[${member.gender}]], [[${member.tel}]], [[${member.adress}]])">変更</button></td>
+        </tr>
+    </table>
+</div2>
+<div3>
+    <form align="center" method="post" th:action="@{/updateMember}">
+        <input id="new_id" type="hidden" name="id" value="ID">
+        名前<input id="new_name" type="text" name="name">
+        性別<select id="new_gender" name="gender">
+                <option value="0"></option><option value="man">男性</option>
+                <option value="woman">女性</option>
+            </select>
+        住所<input id="new_adress" type="text" name="adress"><br>
+        年齢<input id="new_age" type="text" name="age">
+        携帯番号<input id="new_tel" type="tel" name="tel">
+        <br>
+        <br>
+        <br>
+        <br>
+        <tr>
+            <td></td><td></td><td><a class="btn-primary" th:href="@{/menu}">メニュー画面に戻る</a></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></td>
+            <td><input class="btn-primary" type="submit" value="更新する"/></td>
+        </tr>
+    </form>
+</div3>
+
+<script>
+    function changeMember(id, name, age, gender, tel, adress){
+        document.getElementById("new_id").value = id;
+        document.getElementById("new_name").value = name;
+        document.getElementById("new_age").value = age;
+        document.getElementById("new_gender").value = gender;
+        document.getElementById("new_tel").value = tel;
+        document.getElementById("new_adress").value = adress;
+    }
+
+    function showSelectedMember(){
+        document.getElementById("query_all").style.display = 'none';
+        document.getElementById("query_select").style.display = 'block';
+    }
+</script>
+
+<style>
+    .div-parent {
+        display: flex;
+        /*项目位于容器的中心*/
+        justify-content: center;
+        /*元素位于容器的中心。弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。*/
+        align-items: center;
+    }
+</style>
+</body>
+</html>
