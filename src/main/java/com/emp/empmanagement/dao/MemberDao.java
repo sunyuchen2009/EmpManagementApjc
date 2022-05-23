@@ -22,23 +22,21 @@ public interface MemberDao {
      */
     Member queryById(Integer id);
 
+    /**
+     * 根据姓名、性别、年龄查询
+     *
+     * @param name   姓名
+     * @param gender 性别
+     * @param age    年龄
+     *
+     * @return 对象列表
+     */
     @Select("SELECT * FROM member WHERE name=#{name} AND gender=#{gender} AND age=#{age}")
     List<Member> queryByCondition(@Param("name") String name, @Param("gender") String gender, @Param("age") Integer age);
 
     /**
-     * 查询指定行数据
+     * 查询数据库中member表的所有数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    List<Member> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
-
-
-    /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param
      * @return 对象列表
      */
     @Select("SELECT * FROM member")

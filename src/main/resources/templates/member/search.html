@@ -11,7 +11,7 @@
         <tr>
             名前:<input type="text" name="name"><td></td><td></td>
             年齢:<input type="text" name="age">
-            <button onclick="showSelectedMember()">検索</button></tr><br>
+            <button>検索</button></tr><br>
         </tr>
         <tr>
             <td>性別:<select name="gender"><option value="man">男性</option>
@@ -35,17 +35,6 @@
             <th>操作</th>
         </tr>
 
-        <!--全部列表-->
-        <tr id="query_all" th:each="member, memberStat:${memberList}">
-            <td th:text="${member.getId()}"></td>
-            <td th:text="${member.getName()}"></td>
-            <td th:text="${member.getAge()}"></td>
-            <td th:text="${member.getGender()}"></td>
-            <td th:text="${member.getTel()}"></td>
-            <td th:text="${member.getAdress()}"></td>
-
-            <td><button th:onclick="changeMember([[${member.id}]], [[${member.name}]],[[${member.age}]], [[${member.gender}]], [[${member.tel}]], [[${member.adress}]])">変更</button></td>
-        </tr>
         <!--默认隐藏搜索数据-->
         <tr id="query_select" th:each="selectedMember, selectedMemberStat:${selectedMemberList}">
             <td th:text="${selectedMember.getId()}"></td>
@@ -55,13 +44,13 @@
             <td th:text="${selectedMember.getTel()}"></td>
             <td th:text="${selectedMember.getAdress()}"></td>
 
-            <td><button th:onclick="changeMember([[${member.id}]], [[${member.name}]],[[${member.age}]], [[${member.gender}]], [[${member.tel}]], [[${member.adress}]])">変更</button></td>
+            <td><button th:onclick="changeMember([[${selectedMember.id}]], [[${selectedMember.name}]],[[${selectedMember.age}]], [[${selectedMember.gender}]], [[${selectedMember.tel}]], [[${selectedMember.adress}]])">変更</button></td>
         </tr>
     </table>
 </div2>
 <div3>
     <form align="center" method="post" th:action="@{/updateMember}">
-        <input id="new_id" type="hidden" name="id" value="ID">
+        ID<input id="new_id" type="hidden" name="id">
         名前<input id="new_name" type="text" name="name">
         性別<select id="new_gender" name="gender">
                 <option value="0"></option><option value="man">男性</option>
@@ -90,11 +79,6 @@
         document.getElementById("new_gender").value = gender;
         document.getElementById("new_tel").value = tel;
         document.getElementById("new_adress").value = adress;
-    }
-
-    function showSelectedMember(){
-        document.getElementById("query_all").style.display = 'none';
-        document.getElementById("query_select").style.display = 'block';
     }
 </script>
 

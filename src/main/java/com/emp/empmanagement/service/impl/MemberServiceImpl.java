@@ -31,22 +31,23 @@ public class MemberServiceImpl implements MemberService {
     }
 
     /**
-     * 查询多条数据
+     * 查询数据库中member表的所有数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
      * @return 对象列表
      */
-    @Override
-    public List<Member> queryAllByLimit(int offset, int limit) {
-        return this.memberDao.queryAllByLimit(offset, limit);
-    }
-
     @Override
     public List<Member> queryAll() {
         return this.memberDao.queryAll();
     }
 
+    /**
+     * 通过姓名、性别、年龄过滤查询数据
+     *
+     * @param name 实例对象
+     * @param gender 实例对象
+     * @param age 实例对象
+     * @return 对象列表
+     */
     @Override
     public List<Member> queryByCondition(String name, String gender, Integer age) {
         if(!name.isEmpty() && !gender.isEmpty() && age != null){
