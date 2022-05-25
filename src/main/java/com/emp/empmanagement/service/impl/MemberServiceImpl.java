@@ -63,9 +63,8 @@ public class MemberServiceImpl implements MemberService {
      * @return 实例对象
      */
     @Override
-    public Member insert(Member member) {
-        this.memberDao.insert(member);
-        return member;
+    public boolean insert(Member member) {
+        return this.memberDao.insert(member) > 0;
     }
 
     /**

@@ -15,7 +15,10 @@ public class MemberManageController {
 
     @Resource
     MemberService memberService;
-    @RequestMapping("/menbermanage")
+    /*
+    * 返回管理界面，专门写一个控制器用来跳转
+    * */
+    @RequestMapping("/memberManagementPage")
     public String memberManage(Model model){
         //调用查询所有数据的方法
         List<Member> memberList = memberService.queryAll();
@@ -25,14 +28,20 @@ public class MemberManageController {
         return "member/manage";
     }
 
+    /*
+    * 用来处理post发来的表单数据，更新数据库
+    * */
     @RequestMapping(value = "/updateMember", method = RequestMethod.POST)
     public String addMember(Member member) {
         //调用更新方法
         memberService.update(member);
-        //更新成功后重新进入menbermanage控制器，也就是刷新manage界面
-        return "redirect:/menbermanage";
+        //更新成功后重新进入MemberManagementPage控制器，也就是刷新manage界面
+        return "redirect:/memberManagementPage";
     }
 
+    /*
+    * 处理post表单数据的查询字段，并跳转到search界面
+    * */
     @RequestMapping(value = "/searchMember", method = RequestMethod.POST)
     public String searchMember(Model model, Member member) {
         //调用service的条件查询方法，返回Member列表

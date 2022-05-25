@@ -15,7 +15,7 @@ public class Grade implements Serializable {
     
     private String name;
     
-    private String coursename;
+    private String courseName;
     
     private Integer grade;
 
@@ -36,12 +36,12 @@ public class Grade implements Serializable {
         this.name = name;
     }
 
-    public String getCoursename() {
-        return coursename;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCoursename(String coursename) {
-        this.coursename = coursename;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public Integer getGrade() {
@@ -52,4 +52,13 @@ public class Grade implements Serializable {
         this.grade = grade;
     }
 
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", grade=" + grade +
+                '}';
+    }
 }

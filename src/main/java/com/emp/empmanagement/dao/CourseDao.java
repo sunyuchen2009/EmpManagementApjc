@@ -3,6 +3,8 @@ package com.emp.empmanagement.dao;
 import com.emp.empmanagement.bean.Course;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 /**
@@ -35,10 +37,10 @@ public interface CourseDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param course 实例对象
      * @return 对象列表
      */
-    List<Course> queryAll(Course course);
+    @Select("SELECT * FROM course")
+    List<Course> queryAll();
 
     /**
      * 新增数据

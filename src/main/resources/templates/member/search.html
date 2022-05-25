@@ -35,7 +35,7 @@
             <th>操作</th>
         </tr>
 
-        <!--默认隐藏搜索数据-->
+        <!--搜索数据-->
         <tr id="query_select" th:each="selectedMember, selectedMemberStat:${selectedMemberList}">
             <td th:text="${selectedMember.getId()}"></td>
             <td th:text="${selectedMember.getName()}"></td>

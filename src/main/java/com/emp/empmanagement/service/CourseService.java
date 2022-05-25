@@ -29,6 +29,12 @@ public interface CourseService {
     List<Course> queryAllByLimit(int offset, int limit);
 
     /**
+     * 查询所有数据
+     * @return 对象列表
+     */
+    List<Course> queryAll();
+
+    /**
      * 新增数据
      *
      * @param course 实例对象

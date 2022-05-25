@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新規成績画面</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<h1 align="center">新規成績画面</h1>
+<form align="center" method="post" th:action="@{/newgrade}">
+    名前<input type="text" name="name">
+    科目<select name="courseName"><option th:each="course, courseStat:${courseList}" th:text="${course.getName()}" th:value="${course.getName()}"/></select>
+    成績<input type="text" name="grade"><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <input class="btn-primary" type="submit" value="新規追加"/>
+    <a class="btn-primary" href="/menu">メニュー画面に戻る</a>
+</form>
+</body>
+</html>

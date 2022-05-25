@@ -14,7 +14,7 @@ public interface GradeService {
     /**
      * 通过ID查询单条数据
      *
-     * @param  主键
+     * @param  id 主键
      * @return 实例对象
      */
     Grade queryById(Integer id);
@@ -28,13 +28,19 @@ public interface GradeService {
      */
     List<Grade> queryAllByLimit(int offset, int limit);
 
+    List<Grade> queryByCondition(String name, String courseName);
+
+    List<Grade> queryAll();
+
+
+
     /**
      * 新增数据
      *
      * @param grade 实例对象
      * @return 实例对象
      */
-    Grade insert(Grade grade);
+    boolean insert(Grade grade);
 
     /**
      * 修改数据
@@ -42,12 +48,12 @@ public interface GradeService {
      * @param grade 实例对象
      * @return 实例对象
      */
-    Grade update(Grade grade);
+    boolean update(Grade grade);
 
     /**
      * 通过主键删除数据
      *
-     * @param  主键
+     * @param  id 主键
      * @return 是否成功
      */
     boolean deleteById(Integer id);

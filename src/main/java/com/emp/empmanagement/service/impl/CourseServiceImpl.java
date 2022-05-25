@@ -42,6 +42,11 @@ public class CourseServiceImpl implements CourseService {
         return this.courseDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<Course> queryAll() {
+        return this.courseDao.queryAll();
+    }
+
     /**
      * 新增数据
      *

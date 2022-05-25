@@ -44,7 +44,7 @@ public interface MemberService {
      * @param member 实例对象
      * @return 实例对象
      */
-    Member insert(Member member);
+    boolean insert(Member member);
 
     /**
      * 修改数据

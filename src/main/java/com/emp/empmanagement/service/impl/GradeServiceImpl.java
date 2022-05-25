@@ -42,6 +42,16 @@ public class GradeServiceImpl implements GradeService {
         return this.gradeDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<Grade> queryByCondition(String name, String courseName) {
+        return this.gradeDao.queryByCondition(name, courseName);
+    }
+
+    @Override
+    public List<Grade> queryAll() {
+        return this.gradeDao.queryAll();
+    }
+
     /**
      * 新增数据
      *
@@ -49,9 +59,9 @@ public class GradeServiceImpl implements GradeService {
      * @return 实例对象
      */
     @Override
-    public Grade insert(Grade grade) {
-        this.gradeDao.insert(grade);
-        return grade;
+    public boolean insert(Grade grade) {
+        ;
+        return this.gradeDao.insert(grade) > 0;
     }
 
     /**
@@ -61,9 +71,9 @@ public class GradeServiceImpl implements GradeService {
      * @return 实例对象
      */
     @Override
-    public Grade update(Grade grade) {
-        this.gradeDao.update(grade);
-        return this.queryById(grade.getId());
+    public boolean update(Grade grade) {
+
+        return this.gradeDao.update(grade) > 0;
     }
 
     /**

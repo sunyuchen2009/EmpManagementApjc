@@ -1,8 +1,8 @@
 package com.emp.empmanagement.dao;
 
 import com.emp.empmanagement.bean.Grade;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
+
 import java.util.List;
 
 /**
@@ -35,10 +35,14 @@ public interface GradeDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param grade 实例对象
      * @return 对象列表
      */
-    List<Grade> queryAll(Grade grade);
+    @Select("SELECT * FROM grade")
+    List<Grade> queryAll();
+
+
+    @Select("SELECT * FROM grade WHERE name=#{name} AND courseName=#{courseName}")
+    List<Grade> queryByCondition(String name, String courseName);
 
     /**
      * 新增数据
@@ -46,6 +50,7 @@ public interface GradeDao {
      * @param grade 实例对象
      * @return 影响行数
      */
+    @Insert("INSERT INTO grade(name, courseName, grade) VALUES(#{name}, #{courseName}, #{grade})")
     int insert(Grade grade);
 
     /**
@@ -54,6 +59,7 @@ public interface GradeDao {
      * @param grade 实例对象
      * @return 影响行数
      */
+    @Update("UPDATE grade SET name=#{name}, courseName=#{courseName}, grade=#{grade} WHERE id = #{id}")
     int update(Grade grade);
 
     /**
