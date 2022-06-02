@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -43,7 +45,8 @@ public class MemberManageController {
     * 处理post表单数据的查询字段，并跳转到search界面
     * */
     @RequestMapping(value = "/searchMember", method = RequestMethod.POST)
-    public String searchMember(Model model, Member member) {
+    @ResponseBody
+    public List<Member>  searchMember(Model model, Member member) {
         //调用service的条件查询方法，返回Member列表
         List<Member> selectedMemberList =  memberService.queryByCondition(member.getName(), member.getGender(), member.getAge());
         //将查询到的List添加到前端
@@ -54,6 +57,6 @@ public class MemberManageController {
             System.out.println("selectedMember = " + selectedMemberList.get(i).toString());
         }
         //指定跳转到search界面
-        return "/member/search";
+        return selectedMemberList;
     }
 }
