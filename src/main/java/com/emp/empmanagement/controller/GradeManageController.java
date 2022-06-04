@@ -15,13 +15,16 @@ import java.util.List;
 
 @Controller
 public class GradeManageController {
-
     @Resource
     GradeService gradeService;
 
     @Resource
     CourseService courseService;
 
+    /**
+     * 这是一个页面控制器，用于跳转到成绩管理界面，
+     * 获取前端显示需要的数据，以model形式传输
+    * */
     @RequestMapping("/gradeManagementPage")
     public String gradeManagementPage(Model model){
         List<Grade> gradeList = gradeService.queryAll();
@@ -31,6 +34,9 @@ public class GradeManageController {
         return "/grade/grademanagement";
     }
 
+    /**
+     * 根据条件检索成绩的控制器，对应前端检索按钮
+     * */
     @RequestMapping(value = "/searchGrade", method = RequestMethod.POST)
     public String searchGrade(Model model, Grade grade){
         //调用service的条件查询方法，返回Grade列表
@@ -44,6 +50,9 @@ public class GradeManageController {
         return "/grade/search";
     }
 
+    /**
+     * 更新数据库的控制器，对应前端更新按钮
+     * */
     @RequestMapping(value = "/updateGrade", method = RequestMethod.POST)
     public String updateGrade(Model model, Grade grade){
         List<Course> courseList = courseService.queryAll();

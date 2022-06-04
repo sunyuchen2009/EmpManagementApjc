@@ -10,16 +10,19 @@ import javax.annotation.Resource;
 
 @Controller
 public class NewMemberController {
-
     @Resource
     private MemberService memberService;
+
+    /**
+     * 这是一个界面控制器，用于返回新增成员界面
+     * */
     @RequestMapping(value = "/newMemberPage")
     public String newMemberPage(){
         return "/member/newmenber";
     }
 
-    /*
-    * 处理post传来的表单信息，新增到数据库
+    /**
+    * 新增成员控制器，对应前端新增按钮
     * */
     @RequestMapping(value = "/addMember", method = RequestMethod.POST)
     public String addMember(Member member) {

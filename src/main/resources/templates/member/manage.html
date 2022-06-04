@@ -8,7 +8,6 @@
 </head>
     <body>
         <div1 class="div-parent">
-        <!--    <form method="post" th:action="@{/searchMember}">-->
             <div>
                 <tr>
                     名前:<input id="search_name" type="text" name="name"><td></td><td></td>
@@ -20,13 +19,11 @@
                     <option value="woman">女性</option></select>
                     </td>
                 </tr>
-
             </div>
         </div1>
 
         <div2 class="div-parent">
             <table id="memberTable" border="1" cellspacing="0" style="width: 500px;height: 100px" >
-
                     <tr>
                         <th>ID</th>
                         <th>名前</th>
@@ -76,6 +73,7 @@
         </div3>
 
         <script>
+            // 获取检索数据，并动态显示到界面上
             function getSearchMember(){
                 $.ajax({
                     url: '/searchMember',
@@ -96,14 +94,12 @@
                                 tBody.append(createRow(item));
                             }
                         })
-                        // let resultJson = JSON.parse(JSON.stringify(data));
-                        // alert(resultJson.tel);
-                        // console.log(resultJson.adress);
+
                     }
                 });
             }
 
-            <!--创建一行数据-->
+            // 创建一行html标签，利用tBody拼接
             function createRow(item){
                 return `<tr>
                         <td>${item.id}</td>
@@ -112,12 +108,11 @@
                         <td>${item.gender}</td>
                         <td>${item.tel}</td>
                         <td>${item.adress}</td>
-                        <td><button onclick='changeMember(${item.id}, ${item.name}, ${item.age}, ${item.id}, ${item.tel}, ${item.adress})'>変更</button></td>
+                        <td><button onclick="changeMember('${item.id}', '${item.name}', '${item.age}', '${item.gender}', '${item.tel}', '${item.adress}')">変更</button></td>
                     </tr>`;
             }
 
-
-
+            // 变更按钮点击事件，将对应的数据转移到下面更改位置
             function changeMember(id, name, age, gender, tel, adress){
                 document.getElementById("new_id").value = id;
                 document.getElementById("new_name").value = name;
@@ -126,10 +121,10 @@
                 document.getElementById("new_tel").value = tel;
                 document.getElementById("new_adress").value = adress;
             }
-
         </script>
 
         <style>
+            /* div居中样式 */
             .div-parent {
                 display: flex;
                 /*项目位于容器的中心*/

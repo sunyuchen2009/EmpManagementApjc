@@ -17,8 +17,9 @@ public class MemberManageController {
 
     @Resource
     MemberService memberService;
-    /*
-    * 返回管理界面，专门写一个控制器用来跳转
+
+    /**
+    * 这是一个页面控制器，用于跳转到成员管理界面
     * */
     @RequestMapping("/memberManagementPage")
     public String memberManage(Model model){
@@ -30,8 +31,8 @@ public class MemberManageController {
         return "member/manage";
     }
 
-    /*
-    * 用来处理post发来的表单数据，更新数据库
+    /**
+    * 更新数据库的控制器，对应前端更新按钮
     * */
     @RequestMapping(value = "/updateMember", method = RequestMethod.POST)
     public String addMember(Member member) {
@@ -41,8 +42,8 @@ public class MemberManageController {
         return "redirect:/memberManagementPage";
     }
 
-    /*
-    * 处理post表单数据的查询字段，并跳转到search界面
+    /**
+    * 处理post表单数据的查询字段，以json格式返回到前端显示
     * */
     @RequestMapping(value = "/searchMember", method = RequestMethod.POST)
     @ResponseBody
@@ -50,13 +51,14 @@ public class MemberManageController {
         //调用service的条件查询方法，返回Member列表
         List<Member> selectedMemberList =  memberService.queryByCondition(member.getName(), member.getGender(), member.getAge());
         //将查询到的List添加到前端
-        model.addAttribute("selectedMemberList", selectedMemberList);
+        //model.addAttribute("selectedMemberList", selectedMemberList);
 
         System.out.println("member = " + member.toString());
         for (int i=0; i<selectedMemberList.size(); i++){
             System.out.println("selectedMember = " + selectedMemberList.get(i).toString());
         }
-        //指定跳转到search界面
+
+        //spring会将这个list自动转为json返回到前端
         return selectedMemberList;
     }
 }
