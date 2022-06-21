@@ -2,7 +2,6 @@ package com.emp.empmanagement.controller;
 
 import com.emp.empmanagement.bean.Course;
 import com.emp.empmanagement.bean.Grade;
-import com.emp.empmanagement.bean.Member;
 import com.emp.empmanagement.service.CourseService;
 import com.emp.empmanagement.service.GradeService;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class GradeManageController {
         List<Course> courseList = courseService.queryAll();
         model.addAttribute("courseList", courseList);
         model.addAttribute("gradeList", gradeList);
-        return "/grade/grademanagement";
+        return "/grade/gradeManagementPage";
     }
 
     /**
@@ -58,10 +57,10 @@ public class GradeManageController {
         List<Course> courseList = courseService.queryAll();
         //将查询到的List添加到前端
         model.addAttribute("courseList", courseList);
-        if(!gradeService.update(grade)){ //更新失败跳转error界面，暂用menu
-            return "/menu";
-        }else{
+        if(gradeService.update(grade)){ //更新失败跳转error界面，暂用menu
             return "redirect:/gradeManagementPage";
+        }else{
+            return "states/error";
         }
 
     }

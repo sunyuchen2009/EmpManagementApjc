@@ -28,14 +28,14 @@ public class MemberManageController {
         //将查询到的数据通过model添加到前端
         model.addAttribute("memberList",memberList);
         //指定返回界面为manage
-        return "member/manage";
+        return "member/memberManagementPage";
     }
 
     /**
     * 更新数据库的控制器，对应前端更新按钮
     * */
     @RequestMapping(value = "/updateMember", method = RequestMethod.POST)
-    public String addMember(Member member) {
+    public String updateMember(Member member) {
         //调用更新方法
         memberService.update(member);
         //更新成功后重新进入MemberManagementPage控制器，也就是刷新manage界面

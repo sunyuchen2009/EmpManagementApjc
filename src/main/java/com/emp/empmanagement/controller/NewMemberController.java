@@ -18,7 +18,7 @@ public class NewMemberController {
      * */
     @RequestMapping(value = "/newMemberPage")
     public String newMemberPage(){
-        return "/member/newmenber";
+        return "member/newMemberPage";
     }
 
     /**
@@ -27,10 +27,11 @@ public class NewMemberController {
     @RequestMapping(value = "/addMember", method = RequestMethod.POST)
     public String addMember(Member member) {
         System.out.println(member.toString());
-        if(!memberService.insert(member)){ //如果插入失败跳到error界面
-            return "/menu";
+        if(memberService.insert(member)){ //如果插入失败跳到error界面
+            return "memberManagementPage";
         }else{
-            return "redirect:/gradeManagementPage";
+            return "/states/error";
         }
+
     }
 }

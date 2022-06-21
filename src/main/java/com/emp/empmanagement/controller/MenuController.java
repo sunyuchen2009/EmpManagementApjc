@@ -8,8 +8,8 @@ public class MenuController {
     /**
      * 这是一个页面控制器，用于返回menu界面
      * */
-    @RequestMapping("/menu")
+    @RequestMapping("/index")
     public String menu(){
-        return "menu";
+        return "index";
     }
 }
